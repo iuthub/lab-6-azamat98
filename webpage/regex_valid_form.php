@@ -3,18 +3,22 @@
 	$pattern="";
 	$text="";
 	$replaceText="";
-
+	$replacedText="";
 	$match="Not checked yet.";
-
+	$extracted="";
 if ($_SERVER["REQUEST_METHOD"]=="POST") {
 	$pattern=$_POST["pattern"];
 	$text=$_POST["text"];
-
+	$replaceText = $_POST["replaceText"];
+	$replacedText = preg_replace($pattern, $replaceText, $text);
+	preg_match($pattern, $text, $matchs);
+	$extracted = $matchs[0];
 	if(preg_match($pattern, $text)) {
 						$match="Match!";
 					} else {
 						$match="Does not match!";
 					}
+	
 }
 
 ?>
@@ -27,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"]=="POST") {
 	<title>Valid Form</title>
 </head>
 <body>
-	<form action="valid_form.php" method="post">
+	<form action="regex_valid_form.php" method="post">
 		<dl>
 			<dt>Pattern</dt>
 			<dd><input type="text" name="pattern" value="<?= $pattern ?>"></dd>
@@ -40,7 +44,12 @@ if ($_SERVER["REQUEST_METHOD"]=="POST") {
 
 			<dt>Output Text</dt>
 			<dd><?=	$match ?></dd>
+			
+			<dt>Replaced Text</dt>
+			<dd><?php echo $replacedText; ?></dd>
 
+			<dt>Extracted Text</dt>
+			<dd><?= $extracted ?></dd>
 			<dt>&nbsp;</dt>
 			<dd><input type="submit" value="Check"></dd>
 		</dl>

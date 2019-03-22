@@ -8,3 +8,9 @@ Regular Expressions for Exercise 1:
 4) `/\s/`
 5) `/[^0-9\.,]/`
 6) `/\n/`
+
+### Student Details:
+
+- **Student ID**: u1710008
+- **Student Name**: ABDULLAEV AZAMAT
+- **Section Number**: 003
